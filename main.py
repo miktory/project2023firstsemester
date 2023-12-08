@@ -63,5 +63,5 @@ analyst = Role("Аналитик", ["аналитик", "таблиц", "pandas"
 # Дизайнер #
 designer = Role("Дизайнер", ["фронт", "фигм", "figma", "ui", "HTML", "css", "дизайн", "вёрстк", "интерфейс", "illustrator", "photoshop"])
 # Бэкенд #
-backend = Role("Бэкенд", ["бэк", "код", "API", "разработ", "c#", "c++", "Python", "deploy", "депло", "контейнер", "rest", "парс", "апи"])
+backend = Role("Бэкенд", ["бэк", "код", "API", "разработ", "c#", "c++", "Python", "deploy", "депло", "контейнер", "rest", "парс", "апи", "докер", "docker"])
 SortByRole(backend)
