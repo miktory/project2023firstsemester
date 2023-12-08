@@ -31,8 +31,17 @@ def find_coincidences(text, words):
             count += 1
     return count
 
+def find_strict_coincidences(text, words):
+    count = 0
+    text = text.split()
+    for word in words:
+        for element in text:
+            if word.lower() == element.lower():
+                count += 1
+    return count
 
-def SortByRole(role):
+
+def SortByRole(role, is_strict):
     path = "data.xlsx"
     wb_obj = openpyxl.load_workbook(path)
     sheet_obj = wb_obj.active
@@ -44,7 +53,10 @@ def SortByRole(role):
     for i in range(0, len(projects)):
         info = ' '.join([projects[i].title, projects[i].description, projects[i].purpose, projects[i].results,
                          projects[i].technology, projects[i].stack])
-        projects[i].coincidences = find_coincidences(info, role.keywords)
+        if is_strict:
+            projects[i].coincidences = find_strict_coincidences(info, role.keywords)
+        else:
+            projects[i].coincidences = find_coincidences(info, role.keywords)
 
     projects.sort(key=lambda x: x.coincidences)
     projects.reverse()
@@ -64,4 +76,4 @@ analyst = Role("Аналитик", ["аналитик", "таблиц", "pandas"
 designer = Role("Дизайнер", ["фронт", "фигм", "figma", "ui", "HTML", "css", "дизайн", "вёрстк", "интерфейс", "illustrator", "photoshop"])
 # Бэкенд #
 backend = Role("Бэкенд", ["бэк", "код", "API", "разработ", "c#", "c++", "Python", "deploy", "депло", "контейнер", "rest", "парс", "апи", "докер", "docker"])
-SortByRole(backend)
+SortByRole(backend, False)
